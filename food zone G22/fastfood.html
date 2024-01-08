@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title >Food Cart</title>
+  <style>
+    body{
+        background-color: lightgray;
+    }
+    
+.menu-item{
+    display: inline-block;
+   
+    margin: 28px;
+}
+h1{
+    text-align: center;
+    color: brown;
+
+}
+@keyframes zoomIn {
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+}
+h1{
+    font-size: 50px;
+    animation: zoomIn 3s infinite;
+}
+p{
+    display: inline-block;
+    background-color: aquamarine;
+}
+button{
+    color: black;
+    background-color: lightblue;
+}
+
+
+  </style>
+</head>
+<body>
+    <h1>Food Zone</h1>
+
+    <div class="menu-item" id="item1">
+        <img src="b2.jpg">
+        <h2>Burger</h2>
+        <p>Price: $10.00</p>
+        <button onclick="addToCart('Item 1', 10.00)">Add to Cart</button>
+    </div>
+
+    <div class="menu-item" id="item2">
+        <img src="pi3.jpg">
+        <h2>Pizza</h2>
+        <p>Price: $20.00</p>
+        <button onclick="addToCart('Item 1', 10.00)">Add to Cart</button>
+    </div>
+
+    <div class="menu-item" id="item3">
+        <img src="pasta.jpg">
+        <h2>Pastta</h2>
+        <p>Price: $20.00</p>
+        <button onclick="addToCart('Item 1', 10.00)">Add to Cart</button>
+    </div>
+
+
+    
+
+   
+    <div id="cart">
+       
+    </div>
+
+    <p>Total: $<span id="total">0.00</span></p>
+
+    <button><a href="form.html">Conform</a></button>
+
+
+<script>
+ let cartItems = [];
+let total = 0;
+
+function addToCart(itemName, price) {
+    const item = { name: itemName, price: price };
+    cartItems.push(item);
+    total += price;
+    updateCart();
+}
+
+function updateCart() {
+    const cartElement = document.getElementById('cart');
+    const totalElement = document.getElementById('total');
+    
+    cartElement.innerHTML = '';
+
+    cartItems.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.innerHTML = `<p>${item.name} - $${item.price.toFixed(2)}</p>`;
+        cartElement.appendChild(itemElement);
+    });
+
+    totalElement.textContent = total.toFixed(2);
+}
+</script>
+</body>
+</html>
